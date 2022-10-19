@@ -1,26 +1,35 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@import url('https://fonts.googleapis.com/css?family=Poppins:wght@200..900');  
 
-* {
-  box-sizing: border-box;
-}
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+@font-face {
+  font-family: 'Poppins-ExtraBold';
+  src: url("../public/fonts/Poppins-ExtraBold.ttf")
+} 
+
+@font-face {
+  font-family: 'Poppins-Bold';
+  src: url("../public/fonts/Poppins-Bold.ttf")
+} 
+
+@font-face {
+  font-family: 'Poppins-SemiBold';
+  src: url("../public/fonts/Poppins-SemiBold.ttf")
+}  
+
+@font-face {
+  font-family: 'Poppins-Medium';
+  src: url("../public/fonts/Poppins-Medium.ttf")
+} 
+
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url("../public/fonts/Poppins-Regular.ttf")
+} 
+
+body{
+  background-color: #070A0D;
 }
