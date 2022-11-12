@@ -15,13 +15,13 @@ const Home: NextPage = () => {
       <div className=' w-full py-6 px-6 ' >
         <div className=' w-full flex flex-col justify-center items-center my-12 ' >
           <Image width="424px" height="424px" src="/Landing-page-logo.png" alt='Landing' />
-          <p style={{ fontWeight: "900" }} className=" lg:text-3xl xl:text-3xl text-2xl text-center mt-10 text-[#00D1FF] font-Poppins-Bold "  >Fantasy Sports of Sports gaming</p>
-          <p style={{ fontWeight: "900" }} className=" lg:text-xl xl:text-xl mt-6 text-[#8CA6BF] font-Poppins-Bold "  >Players vs Players</p>
+          <p className=" lg:text-3xl xl:text-3xl text-2xl text-center mt-10 text-[#00D1FF] font-Poppins-Bold "  >Fantasy Sports of Sports gaming</p>
+          <p className=" lg:text-xl xl:text-xl mt-6 text-[#8CA6BF] font-Poppins-Bold "  >Players vs Players</p>
           <div className=' w-full flex justify-center items-center my-16 font-Poppins-Bold px-8  ' > 
-            <button className=' bg-[#00D1FF] h-[40px] text-[#0F1419] w-full lg:w-[153px] xl:w-[153px] text-sm rounded-full mr-4 ' >View Games</button>
-            <button className=' border border-[#00D1FF] text-[#00D1FF] h-[40px] bg-[#0F1419] w-full lg:w-[153px] xl:w-[153px] text-sm rounded-full ml-4 ' >How To Play</button>
+            <button className=' bg-[#00D1FF] h-[40px] text-[#0F1419] w-full md:w-[153px] lg:w-[153px] xl:w-[153px] text-sm rounded-full mr-4 ' >View Games</button>
+            <button className=' border border-[#00D1FF] text-[#00D1FF] h-[40px] bg-[#0F1419] w-full md:w-[153px] lg:w-[153px] xl:w-[153px] text-sm rounded-full ml-4 ' >How To Play</button>
           </div>
-          <p style={{ fontWeight: "900" }} className=" text-2xl lg:text-3xl xl:text-3xl text-[#00D1FF] font-Poppins-Bold "  >How to play</p>
+          <p className=" text-2xl lg:text-3xl xl:text-3xl text-[#00D1FF] font-Poppins-Bold "  >How to play</p>
           <div className=' text-sm lg:text-base xl:text-base lg:w-[577.5px] mt-6 ' >
             <div className='flex items-center my-3' >
               <div className=' w-[5px] h-[5px] rounded-full bg-[#8CA6BF] ' />
