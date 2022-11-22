@@ -2,8 +2,23 @@ import Head from 'next/head'
 import React, { Children } from 'react'
 import MenuBar from '../DashboardComponent/MenuBar'
 import Navbar from '../Navbar'
+import {
+    Drawer,
+    DrawerBody,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton,
+    useDisclosure,
+    } from '@chakra-ui/react'
 
 export default function Index({ children }: { children: React.ReactNode }, props: any) {
+
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const btnRef = React.useRef()
+
     return (
         <div className=' w-full h-screen overflow-hidden bg-[#070A0D] '>
             <Head>
@@ -13,8 +28,20 @@ export default function Index({ children }: { children: React.ReactNode }, props
             <Navbar />
             <div className=' w-full flex flex-1 h-[85vh] lg:px-14 xl:px-[328px] pb-1 px-8 ' >
                 <div className=' w-fit ' >
-                    <div className=' w-[330px] h-full overflow-y-auto overflow-x-hidden ' >
+                    <div className=' w-[330px] h-full lg:block hidden overflow-y-auto overflow-x-hidden ' >
                         <MenuBar />
+                    </div>
+                    <div className=' lg:hidden ' > 
+                        <Drawer
+                            isOpen={isOpen}
+                            placement='right'
+                            onClose={onClose} >
+                            <DrawerOverlay /> 
+                            <DrawerCloseButton /> 
+                            <DrawerBody> 
+                                <MenuBar />
+                            </DrawerBody> 
+                        </Drawer>
                     </div>
                 </div>
                 <div className=' flex flex-1 ' > 

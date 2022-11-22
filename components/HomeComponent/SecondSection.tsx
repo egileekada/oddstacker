@@ -10,7 +10,7 @@ export default function SecondSection() {
     const [tab, setTab] = React.useState(1)
 
     return (
-        <div className=' w-full px-6 flex flex-col items-center py-14 bg-[#0F1419] relative z-10  ' >   
+        <div className=' w-full px-6 flex flex-col items-center py-14 bg-[#000000] relative z-10  ' >   
             <p className=' text-[#00D1FF] text-2xl text-center font-Poppins-Bold ' >How to play</p>
             <div className=' flex items-center lg:mb-12 my-5 relative z-10' >
                 {tab !== 1 ? 
