@@ -84,7 +84,7 @@ export default function SecondSection() {
                       <div className=' w-fit mt-3 mr-3 ' > 
                         <div className=' w-[6px] h-[6px] rounded-full bg-[#0F1419] '  />
                       </div> 
-                      <p className=' ' >Players in the “winning positions” win their share of the Jackpote</p>
+                      <p className=' ' >Players in the “winning positions” win their share of the Jackpot</p>
                     </div>
                   </>
                 )}
@@ -94,7 +94,7 @@ export default function SecondSection() {
                 <div className='w-[112px] bg-transparent lg:block hidden ' />
               }
             </div> 
-            <div className=" w-full flex mb-2 justify-center lg:hidden " >
+            <div className=" w-full relative z-10 flex mb-2 justify-center lg:hidden " >
               {tab !== 1 ? 
                 <button onClick={()=> setTab((prev) => prev-1)} className=' mr-2 font-Poppins-Bold w-[112px] rounded-3xl h-[45px] bg-[#00D1FF] ' >{"<< Step "+(tab-1)}</button>:
                 <div className='w-[112px] bg-transparent ' />

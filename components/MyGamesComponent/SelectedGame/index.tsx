@@ -1,7 +1,6 @@
 import React from 'react'
-import { IoIosArrowDropdownCircle, IoIosInformationCircleOutline } from 'react-icons/io'
-import { IoCaretForwardSharp } from 'react-icons/io5' 
-import Games from '../../Games'
+import { IoIosArrowDropdownCircle, IoIosInformationCircleOutline } from 'react-icons/io' 
+import Games from '../../GameInput'
 
 export default function Index(props: any) {
 

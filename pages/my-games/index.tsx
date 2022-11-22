@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import React from 'react'
-import GameDetails from '../../components/GamesComponent/GameDetails'
+import GameDetails from '../../components/MyGamesComponent/MyGamesInfo'
 import MenuBar from '../../components/DashboardComponent/MenuBar' 
 import Navbar from '../../components/Navbar'
-import SelectedGame from '../../components/GamesComponent/SelectedGame'
-import ParticipationModal from '../../components/GamesComponent/ParticipationModal'
+import SelectedGame from '../../components/MyGamesComponent/SelectedGame'
+import ParticipationModal from '../../components/MyGamesComponent/ParticipationModal'
 import DashboardContainer from '../../components/DashboardContainer'
 
 export default function Index() {

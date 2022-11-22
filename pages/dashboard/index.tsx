@@ -1,5 +1,5 @@
 import React from 'react'
-import GameDetails from '../../components/DashboardComponent/GameDetails' 
+import GameDetails from '../../components/GameDetails' 
 import SelectedGame from '../../components/DashboardComponent/SelectedGame'
 import DashboardContainer from '../../components/DashboardContainer' 
 
