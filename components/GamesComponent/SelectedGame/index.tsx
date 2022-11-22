@@ -3,12 +3,12 @@ import { IoIosArrowDropdownCircle, IoIosInformationCircleOutline } from 'react-i
 import { IoCaretForwardSharp } from 'react-icons/io5' 
 import Games from '../../Games'
 
-export default function Index() {
+export default function Index(props: any) {
 
     const [show, setShow] = React.useState(true)
     
     return (
-        <div className=' w-full h-full pb-2  ' >
+        <div className={!props.show ? "w-full h-full pb-2 overflow-y-auto " : "hidden"} >
             {!show && (
                 <div className=' w-full bg-[#0F1419] rounded-2xl h-full flex justify-center items-center flex-col ' > 
                     <p className=' font-Poppins-Bold text-[#8CA6BF] text-xl ' >Select a</p>

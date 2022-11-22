@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function index() {
+export default function index(props: any) {
     return (
-        <div className=' w-full h-full relative mb-2 px-4 rounded-lg ' >
+        <div className={props.show ? " w-full h-full relative mb-2 px-4 rounded-lg " : "hidden"} >
             <div  className=' w-full flex justify-center py-4  ' >
                 <img src="/downarrow.svg" className=' cursor-pointer ' alt='downarrow' />
             </div>

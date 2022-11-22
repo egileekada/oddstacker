@@ -11,7 +11,7 @@ export default function Index() {
 
 
     return (
-        <div className=' w-[330px] h-full bg-[#0F1419] rounded-2xl pt-8 xl:pt-20 ' >
+        <div className=' w-full h-full bg-[#0F1419] rounded-2xl pt-8 xl:pt-20 ' >
             {!show && (
                 <div className=' w-full pl-8 ' >
                     <div className=' flex items-center ' >
@@ -54,7 +54,7 @@ export default function Index() {
                         </div>
                         <p className=' font-Poppins-Bold text-[#00D1FF] ml-6 text-lg ' >Withdraw</p>
                     </button>
-                    <button onClick={()=> Router.push("/")} className='flex items-center py-6 cursor-pointer '  > 
+                    <button onClick={()=> Router.push("/my-games")} className='flex items-center py-6 cursor-pointer '  > 
                         <div className=' w-7 ' > 
                             <img className='w-[26.67px] h-[27px]' src="/Group.png" alt='avatHomear' />  
                         </div>
