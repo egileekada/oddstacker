@@ -5,7 +5,7 @@ import { FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa"
 
 export default function Index() {
     return (
-        <div className=' bg-[#0F1419] mt-16 lg:px-14 xl:px-[328px] pb-4 px-8 pt-10 w-full' >
+        <div className=' bg-[#0F1419] lg:px-14 xl:px-[328px] pb-4 px-8 pt-10 w-full' >
             <div className=' w-full flex justify-between items-center ' >
                 <div  > 
                    <img className=' w-[93.91px] h-[30px] object-contain lg:h-[40px] xl:h-[40px] lg:w-[125.22px] xl:w-[125.22px] ' src="/white-logo.png" alt='white-logo' /> 

@@ -25,7 +25,7 @@ export default function Index() {
                     <input placeholder='Enter email' className='  w-full h-12 rounded-[6px] px-6 bg-[#171F26] ' />:
                     <input placeholder='Enter phone number' className='  w-full h-12 rounded-[6px] px-6 bg-[#171F26] ' />}
                 <input type="password" placeholder='Password' className='  w-full h-12 rounded-[6px] mt-3 px-6 bg-[#171F26] ' /> 
-                <button className=' bg-[#00D1FF] h-[40px] text-[#0F1419] w-full font-Poppins-Bold rounded-[6px] mt-6 ' >Sign up</button>
+                <button className=' bg-[#00D1FF] h-[45px] text-[#0F1419] w-full font-Poppins-Bold rounded-[6px] mt-6 ' >Sign up</button>
                 <div className=' w-full flex justify-center ' >
                     {tab ?  
                         <button onClick={()=> setTab(false)} ><p className=' cursor-pointer font-Poppins-Regular text-[#8CA6BF] mt-3 text-center '>Register with phone number</p></button>: 
