@@ -12,7 +12,7 @@ export default function SecondSection() {
     return (
         <div className=' w-full px-6 flex flex-col items-center py-14 bg-[#0F1419] relative z-10  ' >   
             <p className=' text-[#00D1FF] text-2xl text-center font-Poppins-Bold ' >How to play</p>
-            <div className=' flex items-center lg:mb-12 my-5  ' >
+            <div className=' flex items-center lg:mb-12 my-5 relative z-10' >
                 {tab !== 1 ? 
                     <button onClick={()=> setTab((prev) => prev-1)} className=' lg:block hidden font-Poppins-Bold w-[112px] rounded-3xl h-[45px] bg-[#00D1FF] ' >{"<< Step "+(tab-1)}</button>:
                     <div className=' w-[112px] bg-transparent lg:block hidden ' />
