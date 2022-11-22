@@ -45,7 +45,7 @@ const Home: NextPage = () => {
               <div className=' flex items-center my-5  ' >
                 {tab !== 1 ? 
                   <button onClick={()=> setTab((prev) => prev-1)} className=' lg:block hidden font-Poppins-Bold w-[112px] rounded-3xl h-[45px] bg-[#00D1FF] ' >{"<< Step "+(tab-1)}</button>:
-                  <div className='w-[112px] bg-transparent lg:block hidden ' />
+                  <div className=' w-[112px] bg-transparent lg:block hidden ' />
                 }
                 <div className=' w-full lg:w-[500px] bg-[#00D1FF] mx-4 font-Poppins-SemiBold text-lg text-[#0F1419] rounded-2xl py-4 px-6 ' >
                   {tab === 1 && (
@@ -138,25 +138,25 @@ const Home: NextPage = () => {
                   <Player
                     autoplay
                     loop
-                    src={FilesOne} className=" w-[500px] h-[860px] " />  
+                    src={FilesOne} className=" w-full lg:w-[500px] h-[860px] " />  
                 )}
                 {tab === 2 && ( 
                   <Player
                     autoplay
                     loop
-                    src={FilesThree} className=" w-[500px] h-[860px] " />  
+                    src={FilesThree} className=" w-full lg:w-[500px] h-[860px] " />  
                 )}
                 {tab === 3 && ( 
                   <Player
                     autoplay
                     loop
-                    src={FilesTwo} className=" w-[500px] h-[860px] " />  
+                    src={FilesTwo} className=" w-full lg:w-[500px] h-[860px] " />  
                 )}
                 {tab === 4 && ( 
                   <Player
                     autoplay
                     loop
-                    src={FilesFour} className=" w-[500px] h-[860px] " />  
+                    src={FilesFour} className=" w-full lg:w-[500px] h-[860px] " />  
                 )}
           </div>
         </div>
