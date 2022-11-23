@@ -23,7 +23,7 @@ export default function Index() {
                 <div className=' flex w-full items-center pt-3 ' > 
                     <p className=' font-Poppins-Regular text-[#8CA6BF] mr-1 ' >Input your points between 1.21 - 9.99</p>
                     <IoCaretForwardSharp size={20} color="#536079" />
-                    <input  className=' font-Poppins-Bold w-[65px] h-[45px] px-3 placeholder:text-black rounded-lg bg-[#00D1FF] text-[#000] ml-auto ' placeholder='0.00'  /> 
+                    <input type="number" className=' font-Poppins-Bold w-[65px] h-[45px] px-3 placeholder:text-black rounded-lg bg-[#00D1FF] text-[#000] ml-auto ' placeholder='0.00'  /> 
                 </div>
             </div>
         </div>

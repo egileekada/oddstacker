@@ -10,16 +10,17 @@ import DashboardContainer from '../../components/DashboardContainer'
 export default function Index() {
 
     const [isShown, setIsShown] = React.useState(false)
+    const [tab, setTab] = React.useState(false)
 
     return ( 
         <DashboardContainer >  
-            <div className=' flex flex-1 h-full px-5 overflow-y-auto  ' >
-                <GameDetails />
+            <div className={isShown ? ' lg:flex hidden flex-1 h-full lg:px-5 overflow-y-auto  ': ' flex flex-1 h-full lg:px-5 overflow-y-auto  '} >
+                <GameDetails open={setIsShown}  />
             </div>
-            <div className=' flex flex-1 h-full overflow-y-hidden bg-[#0F1419] rounded-lg ' >
-                <SelectedGame show={isShown} />
-                <ParticipationModal />
-            </div>
+            <div className={isShown ? ' flex flex-1 h-full overflow-y-auto  ': ' lg:flex hidden flex-1 h-full overflow-y-auto  '} >
+                <SelectedGame show={isShown} tab={tab} setTab={setTab} />
+                <ParticipationModal show={tab} hide={setTab} />
+            </div> 
         </DashboardContainer> 
     )
 } 

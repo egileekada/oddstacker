@@ -2,11 +2,11 @@ import React from 'react'
 
 export default function index(props: any) {
     return (
-        <div className={props.show ? " w-full h-full relative mb-2 px-4 rounded-lg " : "hidden"} >
-            <div  className=' w-full flex justify-center py-4  ' >
+        <div className={props.show ? " w-full h-full relative mb-2 lg:px-4 rounded-lg " : "hidden"} >
+            <button onClick={()=> props.hide(false)} className=' w-full flex justify-center py-4  ' >
                 <img src="/downarrow.svg" className=' cursor-pointer ' alt='downarrow' />
-            </div>
-            <div className=' w-full flex h-full flex-col pb-8 flex-1 overflow-y-auto  ' > 
+            </button>
+            <div className=' w-full flex h-full flex-col  lg:pb-8 pb-20 flex-1 overflow-y-auto  ' > 
                 <div className=' bg-[#171F26] w-full py-5 mt-4 rounded-lg px-8 ' >
                     <p className=' font-Poppins-Regular text-sm text-[#8CA6BF] ' >Prize Money</p>
                     <p className=' font-Poppins-Bold text-[#00D1FF] my-1 ' >N100,000</p>

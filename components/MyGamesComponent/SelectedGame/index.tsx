@@ -3,18 +3,16 @@ import { IoIosArrowDropdownCircle, IoIosInformationCircleOutline } from 'react-i
 import Games from '../../GameInput'
 
 export default function Index(props: any) {
-
-    const [show, setShow] = React.useState(true)
     
     return (
-        <div className={!props.show ? "w-full h-full pb-2 overflow-y-auto " : "hidden"} >
-            {!show && (
+        <div className={!props.tab ? "w-full h-full pb-2 overflow-y-auto " : "hidden"} >
+            {!props.show && (
                 <div className=' w-full bg-[#0F1419] rounded-2xl h-full flex justify-center items-center flex-col ' > 
                     <p className=' font-Poppins-Bold text-[#8CA6BF] text-xl ' >Select a</p>
                     <p className=' font-Poppins-Bold text-[#8CA6BF] text-xl mt-3 ' >Game</p>
                 </div>
             )}
-            {show && (
+            {props.show && (
                 <> 
                     <div className=' bg-[#0F1419] w-full rounded-2xl p-6 ' >
                         <div className=' w-full flex items-center justify-between ' > 
@@ -63,19 +61,11 @@ export default function Index(props: any) {
                             <p className=' font-Poppins-Regular text-[#526475] ' >Tie Breaker Score</p>
                             <p className=' font-Poppins-Bold text-lg text-[#8CA6BF] ' >11.25<span className=' ml-1 font-Poppins-Regular ' >points</span></p>
                         </div>
-                    </div>
-                    {/* <div className='w-full pt-5' > 
-                        <div className=' bg-[#0F1419] w-full rounded-2xl p-6 ' >
-                            <div className=' w-full flex items-center border-b border-[#171F26] mb-3 pb-3 ' > 
-                                <p className=' font-Poppins-Regular text-[#8CA6BF] text-center ' >You have 29.99 points to distribute to the predictions below</p>  
-                            </div>
-                            <div className=' flex items-center justify-center mt-1' > 
-                                    <p className=' font-Poppins-Regular text-lg mr-1 text-center text-[#00D1FF] ' >View guidelines</p> 
-                                    <IoIosArrowDropdownCircle  color='#00D1FF' size={20}/>
-                                </div>
-                        </div> 
-                    </div> */}
-                    <div className=' py-3 w-full ' > 
+                    </div> 
+                    <button onClick={()=> props.setTab(true)} className=' bg-[#0F1419] w-full mt-6 rounded-lg flex justify-center items-center py-3 ' >
+                        <p className=' font-Poppins-SemiBold text-[#00D1FF] ' >Leaderboard</p>
+                    </button>
+                    <div className=' py-3 w-full lg:pb-0 pb-20 ' > 
                         <Games />
                         <Games />
                     </div>
