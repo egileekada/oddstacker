@@ -8,7 +8,7 @@ export default function SecondSection() {
                 players win money by customizing points (odds)</p>
             <p className=' font-Poppins-SemiBold text-[#99EDFF] mt-4 max-w-[550px] text-center  '>Using our game changing sports contest system we aim to redefine
                 how communities are incentivized</p>
-            <p className=' font-Poppins-Bold text-xl text-center lg:text-3xl mt-6 text-[#00D1FF] '>Airdrops and Giveaways using Oddstacker Sports Contests</p>
+            <p className=' font-Poppins-Bold text-xl text-center lg:text-3xl mt-6 text-[#00D1FF] '>Giveaways using Oddstacker Sports Contests</p>
         </div>
     )
 } 

@@ -26,7 +26,7 @@ export default function index() {
         <div className=' w-full bg-[#000000] ' >
             <SecondSection />
         </div>
-        <div className=' w-full bg-[#000000]' >
+        {/* <div className=' w-full bg-[#000000]' >
             <ThirdSection />
         </div>
         <div className=' w-full bg-[#000000]' >
@@ -34,7 +34,7 @@ export default function index() {
         </div>
         <div className=' w-full bg-[#000000] ' >
             <FifthSection />
-        </div>
+        </div> */}
         <div className=' w-full ' >
             <LastSection />
         </div>
