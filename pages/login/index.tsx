@@ -20,7 +20,7 @@ export default function Index() {
               <div className='md:w-[486px] lg:w-[486px] xl:w-[486px] font-Poppins-Regular text-white mt-10 ' > 
                 <input placeholder='Username, email or phone number' className='  w-full h-12 rounded-[6px] px-6 bg-[#171F26] ' />
                 <input type="password" placeholder='Password' className='  w-full h-12 rounded-[6px] mt-3 px-6 bg-[#171F26] ' /> 
-                <button onClick={()=> Router.push("/dashbord")} className=' bg-[#00D1FF] h-[45px] text-[#0F1419] w-full font-Poppins-Bold rounded-[6px] mt-6 ' >Log In</button>
+                <button onClick={()=> Router.push("/dashboard")} className=' bg-[#00D1FF] h-[45px] text-[#0F1419] w-full font-Poppins-Bold rounded-[6px] mt-6 ' >Log In</button>
                 <Link href="/forgot-password" ><p className=' cursor-pointer font-Poppins-Regular text-[#8CA6BF] mt-3 text-center '>Forgot password?</p></Link>
               </div>
             </div>

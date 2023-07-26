@@ -12,7 +12,7 @@ export default function HeroSection() {
             <p className=" lg:text-xl xl:text-xl mt-4 text-[#8CA6BF] font-Poppins-Bold "  >Players vs Players</p>
             <div className=' w-full flex justify-center items-center my-8 font-Poppins-Bold px-8  ' > 
               <button className=' bg-[#00D1FF] h-[45px] text-[#0F1419] w-full md:w-[153px] lg:w-[153px] xl:w-[153px] text-sm rounded-full mr-4 ' >View Games</button>
-              <a href='#howtoplay' >
+              <a href='#howtoplay' className=' w-full ' >
                 <div  className=' border border-[#00D1FF] text-[#00D1FF] h-[45px] bg-[#0F1419] w-full md:w-[153px] lg:w-[153px] xl:w-[153px] text-sm rounded-full ml-4 flex justify-center items-center ' >How To Play</div>
               </a>
             </div>
