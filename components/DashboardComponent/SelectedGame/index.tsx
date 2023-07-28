@@ -64,6 +64,7 @@ export default function Index(props: any) {
                         <p className=' font-Poppins-Bold ' >29.99</p>
                         <p className=' font-Poppins-Medium text-sm ' >Points</p>
                     </div>
+                    <button className=' rounded-lg w-full h-[50px] mt-3 font-Poppins-Bold bg-[#00D1FF] text-[#0F1419]  ' >Log in to play</button>
                 </>
             )}
         </div>
