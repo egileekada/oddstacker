@@ -5,10 +5,11 @@ import Footer from '../../components/Footer'
 import Navbar from '../../components/Navbar'
 import Head from 'next/head'
 import { useToast } from '@chakra-ui/react'
-import { useRegisterUserCallback, useVerifyUserCallback } from '../../action/useAuth'
+import { useRegisterUserCallback, useResendOtpCallback, useVerifyUserCallback } from '../../action/useAuth'
 import { useFormik } from 'formik'; 
 import * as yup from 'yup' 
 import { motion } from 'framer-motion'
+import Router from 'next/router'
 
 export default function Index() {
 
@@ -16,9 +17,11 @@ export default function Index() {
 
     const toast = useToast() 
     const [loading, setLoading] = React.useState(false)
+    const [isLoading, setisLoading] = React.useState(false)
     const [otp, setOtp] = React.useState("")
     const { handleRegisterUser } = useRegisterUserCallback();
     const { handleVerifyUser } = useVerifyUserCallback();
+    const { handleResendOtp } = useResendOtpCallback();
     const loginSchema = yup.object({ 
         email: yup.string().email('This email is not valid').required('Your email is required'),
         password: yup.string().required('Your password is required').min(6, 'A minimium of 6 characters'),
@@ -31,105 +34,125 @@ export default function Index() {
         onSubmit: () => {},
     });  
 
-const submit = async () => {
+    const submit = async () => {
 
-  if (!formik.dirty) { 
-      toast({
-          title: "You have to fill in the form to continue",
-          position: "bottom",
-          status: "error",
-          isClosable: true,
-      }) 
-      return;
-  }else if (!formik.isValid) { 
-      toast({
-          title: "You have to fill in the form to continue",
-          position: "bottom",
-          status: "error",
-          isClosable: true,
-      })
-    return;
-  }else {
-      setLoading(true);
-      const request = await handleRegisterUser(JSON.stringify(formik.values))  
-      
-      console.log(request);
-      
-      if (request?.status === 200 || request?.status === 201) { 
-          // localStorage.setItem("token", request?.data?.data?.token)   
-          // localStorage.setItem("id", request?.data?.data?.user?._id)  
+      if (!formik.dirty) { 
           toast({
-              title: request?.data?.detail,
-              position: "bottom",
-              status: "success",
-              isClosable: true,
-          })
-          const t1 = setTimeout(() => {
-              setLoading(false);  
-              setTab(true)
-              // Router.push("/dashboard")
-              clearTimeout(t1);
-          }, 1000);  
-      }else {  
-          toast({
-              title: request?.data?.detail,
+              title: "You have to fill in the form to continue",
               position: "bottom",
               status: "error",
               isClosable: true,
           }) 
-          setLoading(false)  
-      }
-  }
-  setLoading(false);
-}  
-
-
-const submitOtp = async () => {
-
-  if (!otp) { 
-      toast({
-          title: "Enter Your Otp",
-          position: "bottom",
-          status: "error",
-          isClosable: true,
-      }) 
-      return;
-  }else {
-      setLoading(true);
-      const request = await handleVerifyUser(JSON.stringify({
-        // email: formik.values.email,
-        email: "egileoniso.ekada@gmail.com",
-        otp: otp
-      }))  
-      
-      console.log(request);
-      
-      if (request?.status === 200 || request?.status === 201) { 
-          // localStorage.setItem("token", request?.data?.data?.token)   
-          // localStorage.setItem("id", request?.data?.data?.user?._id)  
+          return;
+      }else if (!formik.isValid) { 
           toast({
-              title: request?.data?.detail,
+              title: "You have to fill in the form to continue",
               position: "bottom",
-              status: "success",
+              status: "error",
               isClosable: true,
           })
-          const t1 = setTimeout(() => {
-              setLoading(false);  
-              // Router.push("/dashboard")
-              clearTimeout(t1);
-          }, 1000);  
-      }else {  
+        return;
+      }else {
+          setLoading(true);
+          const request = await handleRegisterUser(JSON.stringify(formik.values))  
+          
+          if (request?.status === 200 || request?.status === 201) {  
+              toast({
+                  title: request?.data?.detail,
+                  position: "bottom",
+                  status: "success",
+                  isClosable: true,
+              })
+              const t1 = setTimeout(() => {
+                  setLoading(false);  
+                  setTab(true)
+                  // Router.push("/dashboard")
+                  clearTimeout(t1);
+              }, 1000);  
+          }else {  
+              toast({
+                  title: request?.data?.detail,
+                  position: "bottom",
+                  status: "error",
+                  isClosable: true,
+              }) 
+              setLoading(false)  
+          }
+      }
+      setLoading(false);
+    }   
+
+    const submitOtp = async () => {
+
+      if (!otp) { 
           toast({
-              title: request?.data?.detail,
+              title: "Enter Your Otp",
               position: "bottom",
               status: "error",
               isClosable: true,
           }) 
-          setLoading(false)  
+          return;
+      }else {
+          setLoading(true);
+          const request = await handleVerifyUser(JSON.stringify({
+            email: formik.values.email, 
+            otp: otp
+          }))   
+          if (request?.status === 200 || request?.status === 201) { 
+              // localStorage.setItem("token", request?.data?.data?.token)   
+              // localStorage.setItem("id", request?.data?.data?.user?._id)  
+              toast({
+                  title: "Verification Successful",
+                  position: "bottom",
+                  status: "success",
+                  isClosable: true,
+              })
+              const t1 = setTimeout(() => {
+                  setLoading(false);  
+                  Router.push("/login")
+                  clearTimeout(t1);
+              }, 1000);  
+          }else {  
+              toast({
+                  title: request?.data[0],
+                  position: "bottom",
+                  status: "error",
+                  isClosable: true,
+              }) 
+              setLoading(false)  
+          }
       }
-  }
-  setLoading(false);
-}  
+      setLoading(false);
+    }  
+
+    const ResendOtp =async()=>{
+
+      setisLoading(true)
+      const request = await handleResendOtp(JSON.stringify({ 
+        user_email: formik.values.email, 
+      }))   
+      if (request?.status === 200 || request?.status === 201) {  
+        toast({
+            title: "Otp Sent",
+            position: "bottom",
+            status: "success",
+            isClosable: true,
+        })
+        const t1 = setTimeout(() => {
+            setLoading(false);  
+            // Router.push("/dashboard")
+            clearTimeout(t1);
+        }, 1000);  
+      }else {  
+          toast({
+              title: request?.data[0],
+              position: "bottom",
+              status: "error",
+              isClosable: true,
+          }) 
+      }
+      setisLoading(false)  
+    }
 
     return (
         <div className=' w-full lg:h-full h-screen bg-[#070A0D] '>
@@ -198,7 +221,7 @@ const submitOtp = async () => {
               </button>
               <div className=' w-full flex justify-center ' >
                   {/* {tab ?  
-                      <button onClick={()=> setTab(false)} ><p className=' cursor-pointer font-Poppins-Regular text-[#8CA6BF] mt-3 text-center '>Register with phone number</p></button>: 
+                      : 
                       <button onClick={()=> setTab(true)} ><p className=' cursor-pointer font-Poppins-Regular text-[#8CA6BF] mt-3 text-center '>Register with email</p></button>} */}
               </div>
             </div>
@@ -216,6 +239,8 @@ const submitOtp = async () => {
                   {loading ? "Loading": "Verify Email"}
                 </button>
                 <div className=' w-full flex justify-center ' >
+
+                <button onClick={ResendOtp} ><p className=' cursor-pointer font-Poppins-Regular text-[#8CA6BF] mt-3 text-center '>{isLoading ? "Loading": "Resend Otp"}</p></button>
                     {/* {tab ?  
                         <button onClick={()=> setTab(false)} ><p className=' cursor-pointer font-Poppins-Regular text-[#8CA6BF] mt-3 text-center '>Register with phone number</p></button>: 
                         <button onClick={()=> setTab(true)} ><p className=' cursor-pointer font-Poppins-Regular text-[#8CA6BF] mt-3 text-center '>Register with email</p></button>} */}

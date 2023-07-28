@@ -17,12 +17,12 @@ export default function Login() {
   const [loading, setLoading] = React.useState(false)
   const { handleLogin } = useLoginCallback();
   const loginSchema = yup.object({ 
-      email: yup.string().email('This email is not valid').required('Your email is required'),
+      username_or_email: yup.string().required('Your email is required'),
       password: yup.string().required('Your password is required').min(6, 'A minimium of 6 characters')
   }) 
 
   const formik = useFormik({
-    initialValues: {email: '', password: ''},
+    initialValues: {username_or_email: '', password: ''},
     validationSchema: loginSchema,
     onSubmit: () => {},
 });  
@@ -48,11 +48,14 @@ const submit = async () => {
     }else {
         setLoading(true);
         const request = await handleLogin(JSON.stringify(formik.values))  
+
+        console.log(request);
+        
       if (request?.status === 200 || request?.status === 201) { 
-          // localStorage.setItem("token", request?.data?.data?.token)   
+          localStorage.setItem("token", request?.data?.access_token)   
           // localStorage.setItem("id", request?.data?.data?.user?._id)  
           toast({
-              title: request?.data?.detail,
+              title: "Login Successful",
               position: "bottom",
               status: "success",
               isClosable: true,
@@ -64,7 +67,7 @@ const submit = async () => {
           }, 1000);  
       }else {  
           toast({
-              title: request?.data?.detail,
+              title: request?.data[0],
               position: "bottom",
               status: "error",
               isClosable: true,
@@ -87,19 +90,19 @@ const submit = async () => {
               <Image width="300px" height="300px" src="/Landing-page-logo.png" alt='Landing' /> 
               <div className='md:w-[486px] lg:w-[486px] xl:w-[486px] font-Poppins-Regular text-white mt-4 ' > 
                 <input 
-                    name="email"
+                    name="username_or_email"
                     onChange={formik.handleChange}
                     onFocus={() =>
-                        formik.setFieldTouched("email", true, true)
+                        formik.setFieldTouched("username_or_email", true, true)
                     }   
                     autoComplete="new-password"
                     type='email'placeholder='Username, email or phone number' className='  w-full h-12 rounded-[6px] px-6 outline-none bg-[#171F26] ' />
-                {formik.touched.email && formik.errors.email && (
+                {formik.touched.username_or_email && formik.errors.username_or_email && (
                     <motion.p
                         className=' text-[#E84545] text-xs mt-1 font-Poppins-SemiBold '
                         initial={{ y: -100, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }} >
-                      {formik.errors.email}
+                      {formik.errors.username_or_email}
                     </motion.p>
                   )}
                 <input 

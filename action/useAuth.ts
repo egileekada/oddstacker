@@ -45,4 +45,21 @@ export function useVerifyUserCallback() {
   }
   return { handleVerifyUser }
 }
+
+
+
+export function useResendOtpCallback() {
+  const handleResendOtp = async (postData: any): Promise<any> => {    
+    try{ 
+        const response = await apiClient.post('/users/resend-otp', postData,
+        {
+          headers: {'Content-Type':'application/json'},
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response    
+    }     
+  }
+  return { handleResendOtp }
+}
   
