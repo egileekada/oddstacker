@@ -13,7 +13,7 @@ import Router from 'next/router'
 
 export default function Index() {
 
-    const [tab, setTab] = React.useState(true)
+    const [tab, setTab] = React.useState(false)
 
     const toast = useToast() 
     const [loading, setLoading] = React.useState(false)
@@ -58,7 +58,7 @@ export default function Index() {
           
           if (request?.status === 200 || request?.status === 201) {  
               toast({
-                  title: request?.data?.detail,
+                  title: "Rgistration Successful",
                   position: "bottom",
                   status: "success",
                   isClosable: true,
