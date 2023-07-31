@@ -1,5 +1,5 @@
 
-const liveUrl = 'http://oddstacker-server.eba-u8ug37em.eu-central-1.elasticbeanstalk.com';
+const liveUrl = 'https://api.oddstacker.com';
 
 export const BASEURL = {
     URL: liveUrl,

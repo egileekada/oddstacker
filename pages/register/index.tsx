@@ -58,7 +58,7 @@ export default function Index() {
           
           if (request?.status === 200 || request?.status === 201) {  
               toast({
-                  title: "Rgistration Successful",
+                  title: "Registration Successful",
                   position: "bottom",
                   status: "success",
                   isClosable: true,
