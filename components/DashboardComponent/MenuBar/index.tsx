@@ -2,16 +2,69 @@
 import Router from 'next/router';
 import React from 'react'
 import { BiLogIn, BiLogOut } from "react-icons/bi";
+import { useSelector } from 'react-redux';
+import ModalLayout from '../../modalLayout';
+import { useToast } from '@chakra-ui/react';
+import { useUpdateProfileCallback } from '../../../action/useAction';
 
 export default function Index() {
 
     const [show, setShow] = React.useState(true) 
     const [isShown, setIsShown] = React.useState(false) 
+    const [loading, setLoading] = React.useState(false) 
     const [profile, setProfile] = React.useState(false) 
+    const [firstName, setFirstName] = React.useState("") 
+    const [lastName, setLastName] = React.useState("") 
+    const [phoneNumber, setPhoneNumber] = React.useState("") 
+    
+    const { handleUpdateProfile } = useUpdateProfileCallback()
+    
+    const data = useSelector((state: any) => state?.userinfo?.userdata) 
+ 
+    const toast = useToast()
+    
+    const submit = async()=> {
 
+        setLoading(true)
+
+        const request = await handleUpdateProfile(JSON.stringify({
+            "phone_number": phoneNumber,
+            "first_name": firstName,
+            "last_name": lastName
+        }))   
+        if (request?.status === 200 || request?.status === 201 || request?.status === 202) { 
+            localStorage.setItem("token", request?.data?.access_token)   
+            // localStorage.setItem("id", request?.data?.data?.user?._id)  
+            toast({
+                title: "Update Successful",
+                position: "bottom",
+                status: "success",
+                isClosable: true,
+            })
+            // const t1 = setTimeout(() => {
+            //     setLoading(false);  
+            //     Router.push("/dashboard")
+            //     clearTimeout(t1);
+            // }, 1000);  
+        }else {  
+            toast({
+                title: "Error occurred",
+                position: "bottom",
+                status: "error",
+                isClosable: true,
+            }) 
+            setLoading(false)  
+        }
+    }        
+
+    React.useEffect(()=> {
+        setFirstName(data?.first_name)
+        setLastName(data?.last_name)
+        setPhoneNumber(data?.phone_number)
+    }, [])
 
     return (
-        <div className=' w-full h-full bg-[#0F1419] rounded-2xl pt-8 xl:pt-20 ' >
+        <div className=' w-full h-full bg-[#0F1419] overflow-x-hidden rounded-2xl pt-8 xl:pt-20 ' >
             {!show && (
                 <div className=' w-full pl-8 ' >
                     <div className=' flex items-center ' >
@@ -28,9 +81,9 @@ export default function Index() {
                 <div className=' w-full bg-[#0F1419] pl-8 pb-5 rounded-2xl ' >
                     <div className=' flex items-center mt-4 xl:mt-8 ' >
                         <img className='w-[21.33px] h-[26.67px]' src="/avatar.png" alt='avatar' />  
-                        <p className=' font-Poppins-Bold text-[#00D1FF] ml-3 text-lg ' >Uchenna Achebe</p>
+                        <p className=' font-Poppins-Bold text-[#00D1FF] ml-3 text-lg ' >{data?.first_name ? data?.first_name+" "+data?.last_name: data?.username}</p>
                     </div>
-                    <p className=' font-Poppins-Regular text-[#8CA6BF] mt-3 text-lg' >@controller</p>
+                    <p className=' font-Poppins-Regular text-[#8CA6BF] mt-3 text-lg' >@{data?.email.length > 18 ? data?.email?.slice(0, 18)+"...": data?.email}</p>
                     <div className=' w-full h-[134px] flex justify-center flex-col bg-[#00D1FF] mt-8 xl:mt-14 rounded-tl-[12px] rounded-bl-[12px] pl-4 ' >
                         <p className=' font-Poppins-Bold text-xl text-[#000] ' >N5,000</p>
                         <div className=' flex items-center mt-1 ' >
@@ -88,26 +141,30 @@ export default function Index() {
                     <div onClick={()=> setProfile(false)} className=' cursor-pointer bg-black bg-opacity-40 fixed inset-0   ' />
                 </div>
             )}
-            {profile && (
+            {/* {profile && (
                 <div className=' fixed inset-0 flex py-10 overflow-y-auto  z-20 ' >
-                    <div className=' w-[500px] rounded-2xl h-fit relative mx-auto z-30 py-[40px] px-[32px] flex flex-col bg-[#0F1419] ' > 
-                        <div className=' w-full mt-5 ' > 
-                            <p className=' font-Poppins-Regular text-[#8CA6BF] mb-2' >First Name</p>
-                            <input placeholder='' className='  w-full h-12 rounded-[6px] px-6 bg-[#171F26] ' />
-                            <p className=' font-Poppins-Regular text-[#8CA6BF] mt-5 mb-2' >Last Name</p>
-                            <input placeholder='' className='  w-full h-12 rounded-[6px] px-6 bg-[#171F26] ' />
-                            <p className=' font-Poppins-Regular text-[#8CA6BF] mt-5 mb-2' >Username</p>
-                            <input placeholder='@Controller' className='  w-full h-12 rounded-[6px] px-6 bg-[#171F26] ' />
-                            <p className=' font-Poppins-Regular text-[#8CA6BF] mt-5 mb-2' >Email</p>
-                            <input placeholder='example@gmail.com' className='  w-full h-12 rounded-[6px] px-6 bg-[#171F26] ' />
-                            <p className=' font-Poppins-Regular text-[#8CA6BF] mt-5 mb-2' >Phone number</p>
-                            <input placeholder='+2348125151662' className='  w-full h-12 rounded-[6px] px-6 bg-[#171F26] ' />
-                            <button onClick={()=> setProfile(false)}  className=' mt-8 w-full h-12 rounded-lg bg-[#00D1FF] font-Poppins-Bold ' >Save</button>
-                        </div>
-                    </div>
+                    
                     <div onClick={()=> setProfile(false)} className=' cursor-pointer bg-black bg-opacity-40 fixed inset-0   ' />
                 </div>
-            )}
+            )} */}
+
+            <ModalLayout open={profile} close={setProfile} size={"lg"} title=""  >
+                <div className=' w-full rounded-2xl h-fit relative mx-auto z-30 text-[#8CA6BF] py-[40px] px-[32px] flex flex-col bg-[#0F1419] ' > 
+                    <div className=' w-full mt-5 ' > 
+                        <p className=' font-Poppins-Regular text-[#8CA6BF] mb-2' >First Name</p>
+                        <input value={firstName} onChange={(e)=> setFirstName(e.target.value)} placeholder='' className='  w-full h-12 rounded-[6px] px-6 bg-[#171F26] ' />
+                        <p className=' font-Poppins-Regular text-[#8CA6BF] mt-5 mb-2' >Last Name</p>
+                        <input value={lastName} onChange={(e)=> setLastName(e.target.value)} placeholder='' className='  w-full h-12 rounded-[6px] px-6 bg-[#171F26] ' />
+                        <p className=' font-Poppins-Regular text-[#8CA6BF] mt-5 mb-2' >Username</p>
+                        <input value={data?.username} placeholder='@Controller' className='  w-full h-12 rounded-[6px] px-6 bg-[#171F26] ' />
+                        <p className=' font-Poppins-Regular text-[#8CA6BF] mt-5 mb-2' >Email</p>
+                        <input value={data?.email} placeholder='example@gmail.com' className='  w-full h-12 rounded-[6px] px-6 bg-[#171F26] ' />
+                        <p className=' font-Poppins-Regular text-[#8CA6BF] mt-5 mb-2' >Phone number</p>
+                        <input value={phoneNumber} onChange={(e)=> setPhoneNumber(e.target.value)} placeholder='+2348125151662' className='  w-full h-12 rounded-[6px] px-6 bg-[#171F26] ' />
+                        <button onClick={()=> submit()}  className=' mt-8 w-full h-12 rounded-lg bg-[#00D1FF] font-Poppins-Bold ' >Save</button>
+                    </div>
+                </div>
+            </ModalLayout>
         </div>  
     )
 } 

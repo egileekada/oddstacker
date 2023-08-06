@@ -1,7 +1,13 @@
 import React from 'react'
-import { IoCaretForwardSharp } from 'react-icons/io5'
+import { IoCaretForwardSharp } from 'react-icons/io5' 
+import { useSelector } from "react-redux";   
 
 export default function Index() {
+
+    const data = useSelector((state: any) => state?.gamedetails?.data) 
+    // console.log(data);
+    
+
     return ( 
         <div className='w-full py-3' >
             <div className=' bg-[#0F1419] w-full rounded-2xl p-6 ' >

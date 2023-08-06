@@ -47,10 +47,7 @@ const submit = async () => {
       return;
     }else {
         setLoading(true);
-        const request = await handleLogin(JSON.stringify(formik.values))  
-
-        console.log(request);
-        
+        const request = await handleLogin(JSON.stringify(formik.values))   
       if (request?.status === 200 || request?.status === 201) { 
           localStorage.setItem("token", request?.data?.access_token)   
           // localStorage.setItem("id", request?.data?.data?.user?._id)  
