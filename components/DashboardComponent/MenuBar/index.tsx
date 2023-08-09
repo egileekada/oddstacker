@@ -40,12 +40,7 @@ export default function Index() {
                 position: "bottom",
                 status: "success",
                 isClosable: true,
-            })
-            // const t1 = setTimeout(() => {
-            //     setLoading(false);  
-            //     Router.push("/dashboard")
-            //     clearTimeout(t1);
-            // }, 1000);  
+            }) 
         }else {  
             toast({
                 title: "Error occurred",
@@ -83,7 +78,7 @@ export default function Index() {
                         <img className='w-[21.33px] h-[26.67px]' src="/avatar.png" alt='avatar' />  
                         <p className=' font-Poppins-Bold text-[#00D1FF] ml-3 text-lg ' >{data?.first_name ? data?.first_name+" "+data?.last_name: data?.username}</p>
                     </div>
-                    <p className=' font-Poppins-Regular text-[#8CA6BF] mt-3 text-lg' >@{data?.email.length > 18 ? data?.email?.slice(0, 18)+"...": data?.email}</p>
+                    <p className=' font-Poppins-Regular text-[#8CA6BF] mt-3 text-lg' >@{data?.email?.length > 18 ? data?.email?.slice(0, 18)+"...": data?.email}</p>
                     <div className=' w-full h-[134px] flex justify-center flex-col bg-[#00D1FF] mt-8 xl:mt-14 rounded-tl-[12px] rounded-bl-[12px] pl-4 ' >
                         <p className=' font-Poppins-Bold text-xl text-[#000] ' >N5,000</p>
                         <div className=' flex items-center mt-1 ' >

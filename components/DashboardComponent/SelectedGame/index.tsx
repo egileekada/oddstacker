@@ -2,19 +2,26 @@ import React from 'react'
 import { IoIosArrowDropdownCircle, IoIosInformationCircleOutline } from 'react-icons/io'
 import { IoCaretForwardSharp } from 'react-icons/io5'
 import Games from '../../GameInput'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { dateFormat } from '../../../config/dateFormat'
 import { cashFormat } from '../../../config/cashFormat'
+import { payloadCase, pointCase } from '../../../context/state/gameInput'   
 
 export default function SelectedGame() { 
 
     const data = useSelector((state: any) => state?.gamedetails?.data)  
+    const dispatch = useDispatch()
     
-    console.log(data?.game);
-    
+    const inputData = useSelector((state: any) => state?.gameinput)  
+
+
+    React.useEffect(()=> {
+        dispatch(pointCase(0))
+        dispatch(payloadCase([])) 
+    }, [data.open])
 
     return (
-        <div className=' w-full h-full pb-2  ' >
+        <div className=' w-full h-full pb-2 scroll-smooth ' >
             {!data.open && (
                 <div className=' w-full bg-[#0F1419] rounded-2xl h-full flex justify-center items-center flex-col ' > 
                     <p className=' font-Poppins-Bold text-[#8CA6BF] text-xl ' >Select a</p>
@@ -66,14 +73,13 @@ export default function SelectedGame() {
                         </div> 
                     </div>
                     <div className=' py-3 w-full lg:pb-0 pb-20  ' > 
-                        <Games />
-                        <Games />
+                        <Games gameId={data?.game?.id} />
+                        {/* <Games /> */}
                     </div>
-                    <div className=' fixed bottom-40 right-0 rounded-l-full w-[89px] h-[83px] flex flex-col justify-center items-center pl-4 bg-[#FF7A00] ' >
-                        <p className=' font-Poppins-Bold ' >{data?.game?.game_type?.total_points}</p>
+                    <div className=' fixed bottom-56 right-0 rounded-l-full w-[89px] h-[83px] flex flex-col justify-center items-center pl-4 bg-[#FF7A00] ' >
+                        <p className=' font-Poppins-Bold ' >{Number(inputData?.point).toFixed(2).replace(/^-0.00$/, "0.00")}</p>
                         <p className=' font-Poppins-Medium text-sm ' >Points</p>
                     </div>
-                    <button className=' rounded-lg w-full h-[50px] mt-3 font-Poppins-Bold bg-[#00D1FF] text-[#0F1419]  ' >Log in to play</button>
                 </>
             )}
         </div>

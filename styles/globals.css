@@ -32,11 +32,12 @@
 
 body{
   background-color: #070A0D;
+  scroll-behavior: smooth !important; 
 }
 
 
-html{  
-  scroll-behavior: smooth; 
+html, body{  
+  scroll-behavior: smooth !important; 
 }
 
 /* width */

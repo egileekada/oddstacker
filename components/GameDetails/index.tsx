@@ -5,16 +5,16 @@ import HeadToHead from '../GamesOptions/HeadToHead';
 import { useQuery } from 'react-query'; 
 import { AxiosError } from 'axios';
 import apiClient from '../../config/apiClient';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { detailCase } from '../../context/state/gameDetails' 
 import LoadingAnimation from '../loadingAnimation';
+import { payloadCase, pointCase } from '../../context/state/gameInput'   
 
 export default function GameDetails() {
 
-
-
-    const [gameData, setGameData] = React.useState([] as any)
-
+    const [gameData, setGameData] = React.useState([] as any) 
+    const dispatch = useDispatch();  
+    const data = useSelector((state: any) => state?.gamedetails?.data)  
 
     const { isLoading } = useQuery(['list-game'], () => apiClient.get('/game-manager/list-game', { 
         headers: {
@@ -30,14 +30,18 @@ export default function GameDetails() {
         }
     })     
 
-    const dispatch = useDispatch();  
+    const clickHandler =(item: any)=> { 
+        dispatch(pointCase(data?.game?.game_type?.total_points))
+        dispatch(payloadCase([])) 
+        dispatch(detailCase({game: item, open: true}))
+    }
 
     return (
         <LoadingAnimation loading={isLoading} length={gameData?.length} > 
             <div className=' w-full h-auto cursor-pointer pb-20 -mt-5 ' > 
                 {gameData?.map((item: any, index: number)=> {
                     return(
-                        <div key={index} role='button' onClick={()=> dispatch(detailCase({game: item, open: true}))} >
+                        <div key={index} role='button' onClick={()=> clickHandler(item)} >
                             {item?.game_type?.game_type_name === "BIG MAC" && ( 
 
                                 <Guaranteed data={item} /> 

@@ -34,8 +34,7 @@ export default function Index(props: any) {
         onError: (error: AxiosError<any, any>) => {
         //   toast.error(error.response?.data);
         }, 
-        onSuccess: (data) => {   
-            console.log(data?.data);
+        onSuccess: (data) => {    
             dispatch(userCase(data?.data))
             // setGameData(data.data);
         }

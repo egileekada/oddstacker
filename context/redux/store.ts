@@ -1,13 +1,13 @@
-import { configureStore } from '@reduxjs/toolkit'
-import pageInfo from '../state/pageInfo'; 
+import { configureStore } from '@reduxjs/toolkit' 
 import gameDetails from '../state/gameDetails';
 import userInfo from '../state/currentUser';
+import gameInput from '../state/gameInput';
 
 const store = configureStore({
         reducer: {
-            // pageinfo: pageInfo,
             userinfo: userInfo,
             gamedetails: gameDetails, 
+            gameinput: gameInput,
         }, 
     });
 

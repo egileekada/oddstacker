@@ -62,4 +62,35 @@ export function useResendOtpCallback() {
   }
   return { handleResendOtp }
 }
+
+
+export function useResetPasswordOtpCallback() {
+  const handleResetPasswordOtp = async (postData: any): Promise<any> => {    
+    try{ 
+        const response = await apiClient.post('/users/password-reset', postData,
+        {
+          headers: {'Content-Type':'application/json'},
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response    
+    }     
+  }
+  return { handleResetPasswordOtp }
+}
+
+export function useResendPasswordOtpCallback() {
+  const handleResendPasswordOtp = async (postData: any): Promise<any> => {    
+    try{ 
+        const response = await apiClient.post('/users/password-reset-request', postData,
+        {
+          headers: {'Content-Type':'application/json'},
+        }); 
+        return response       
+    } catch(err: any) { 
+      return err?.response    
+    }     
+  }
+  return { handleResendPasswordOtp }
+}
   
