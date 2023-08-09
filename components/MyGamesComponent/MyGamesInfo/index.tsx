@@ -14,7 +14,7 @@ export default function Index(props: any) {
                 <button onClick={()=> setIsShown(true)} className={isShown ? ' w-[142px] h-[45px] rounded-full font-Poppins-SemiBold bg-[#00D1FF] mr-1 text-[#0F1419]  ' : ' w-[142px] h-[45px] text-[#8CA6BF]  rounded-full font-Poppins-SemiBold ml-1  '} >Finished</button>
             </div>   
             <div className=' cursor-pointer ' >
-                <GameDetails open={props.open}  />
+                {/* <GameDetails open={props.open}  /> */}
             </div>
         </div>
     )
